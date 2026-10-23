@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flashcards - Acessibilidade Visual</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Flashcards de Estudo: Acessibilidade Web</h1>
+    <p>Pressione <kbd>Tab</kbd> para navegar e <kbd>Enter</kbd> ou <kbd>Espaço</kbd> para revelar a resposta.</p>
+  </header>
+
+  <main class="container">
+    <!-- Card 1 -->
+    <article class="flashcard" tabindex="0" role="button" aria-expanded="false">
+      <div class="card-inner">
+        <div class="card-front">
+          <h2>O que é contraste de cor?</h2>
+          <img>
+          <img src="https://mercur.com.br/voce-conhece-os-simbolos-de-acessibilidade-e-o-que-significam/"
+          <span class="dica">Clique ou pressione Enter para virar</span>
+        </div>
+        <div class="card-back">
+          <p>É a diferença de luminescência entre o texto e o fundo. A norma WCAG exige a proporção mínima de <strong>4.5:1</strong> para texto normal.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2 -->
+    <article class="flashcard" tabindex="0" role="button" aria-expanded="false">
+      <div class="card-inner">
+        <div class="card-front">
+          <h2>Para que serve o atributo <code>alt</code>?</h2>
+          <span class="dica">Clique ou pressione Enter para virar</span>
+        </div>
+        <div class="card-back">
+          <p>Fornece uma descrição em texto para imagens, permitindo que leitores de tela leiam o conteúdo para pessoas com deficiência visual.</p>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <script>
+    // Permite virar o cartão usando o teclado (Enter ou Espaço) ou Clique
+    document.querySelectorAll('.flashcard').forEach(card => {
+      const toggleCard = () => {
+        card.classList.toggle('virado');
+        const isVirado = card.classList.contains('virado');
+        card.setAttribute('aria-expanded', isVirado);
+      };
+
+      card.addEventListener('click', toggleCard);
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleCard();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
